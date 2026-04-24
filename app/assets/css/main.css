@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0a0e17;
+    --bg-secondary: #111827;
+    --bg-tertiary: #1f2937;
+    --border: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --green: #10b981;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --blue: #3b82f6;
+  }
+
+  body {
+    @apply bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6, .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-4;
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-[var(--blue)] text-white hover:bg-blue-600;
+  }
+
+  .btn-danger {
+    @apply bg-[var(--red)] text-white hover:bg-red-600;
+  }
+
+  .btn-success {
+    @apply bg-[var(--green)] text-white hover:bg-green-600;
+  }
+
+  .btn-secondary {
+    @apply bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border)] hover:bg-gray-700;
+  }
+
+  .input {
+    @apply bg-[var(--bg-tertiary)] border border-[var(--border)] rounded px-3 py-2 text-[var(--text-primary)] focus:outline-none focus:border-[var(--blue)];
+  }
+
+  .badge {
+    @apply px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider;
+  }
+
+  .badge-green {
+    @apply bg-emerald-500/10 text-[var(--green)] border border-emerald-500/20;
+  }
+
+  .badge-red {
+    @apply bg-red-500/10 text-[var(--red)] border border-red-500/20;
+  }
+
+  .badge-yellow {
+    @apply bg-amber-500/10 text-[var(--yellow)] border border-amber-500/20;
+  }
+
+  .progress-fill {
+    width: var(--percent, 0%);
+    @apply h-full transition-all duration-1000;
+  }
+
+  .bar-item {
+    height: var(--h, 20%);
+    @apply flex-1 bg-[var(--blue)] opacity-40 rounded-t transition-all duration-500;
+  }
+}
+
+/* Animations for real-time updates */
+@keyframes flash-green {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(16, 185, 129, 0.2); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flash-red {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(239, 68, 68, 0.2); }
+  100% { background-color: transparent; }
+}
+
+.animate-flash-green {
+  animation: flash-green 1s ease-out;
+}
+
+.animate-flash-red {
+  animation: flash-red 1s ease-out;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out forwards;
+}
